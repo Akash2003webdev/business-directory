@@ -151,7 +151,7 @@ const Register = () => {
               value={form.adminCode}
               onChange={change}
               required
-              className="w-full p-3 mb-4 border-2 border-red-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+              className="w-full p-3 mb-4 border- border-red-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 transition"
             />
           )}
 

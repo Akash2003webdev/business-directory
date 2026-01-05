@@ -28,12 +28,12 @@ const Admin = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row gap-4 p-4">
+      <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row gap-4 p-4 text-gray-900">
         {/* LEFT SIDE – EQUAL SIZE PANEL */}
-        <div className="flex-1 bg-white shadow-md rounded-lg p-6 space-y-8 overflow-y-auto">
+        <div className="flex-1 bg-white shadow-xl rounded-lg p-6 space-y-8 overflow-y-auto border border-gray-300">
           {/* 1️⃣ ADMIN SECTION */}
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
+            <h2 className="text-2xl font-bold text-black mb-4 text-center underline decoration-blue-500">
               Admins
             </h2>
 
@@ -43,7 +43,7 @@ const Admin = () => {
                 .map((user) => (
                   <div
                     key={user._id}
-                    className="border border-gray-200 rounded-md p-9 flex justify-between items-center mb-5"
+                    className="border-2 border-gray-300 rounded-md p-6 flex justify-between items-center mb-5 bg-gray-50 hover:bg-gray-100"
                   >
                     <div className="flex items-center gap-6">
                       <img
@@ -51,25 +51,31 @@ const Admin = () => {
                           user.imageUrl ||
                           "https://randomuser.me/api/portraits/men/75.jpg"
                         }
-                        className="w-14 h-14 rounded-full border-2 border-blue-500 object-cover"
+                        className="w-14 h-14 rounded-full border-4 border-blue-600 object-cover"
                         alt="admin"
                       />
                       <div>
-                        <p className="text-lg font-medium">{user.name}</p>
-                        <p className="text-sm text-gray-600">{user.role}</p>
+                        {/* Name Darker */}
+                        <p className="text-xl font-bold text-gray-900">
+                          {user.name}
+                        </p>
+                        {/* Role Darker */}
+                        <p className="text-md text-gray-800 font-semibold">
+                          {user.role}
+                        </p>
                       </div>
                     </div>
 
                     <div className="flex gap-2">
                       <button
                         onClick={() => nav(`/edit/${user._id}`)}
-                        className="bg-blue-600 text-white px-3 py-1 rounded-md"
+                        className="bg-blue-600 text-white px-3 py-1 rounded-md font-bold hover:bg-blue-700"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => deleteUser(user._id)}
-                        className="bg-red-600 text-white px-3 py-1 rounded-md"
+                        className="bg-red-600 text-white px-3 py-1 rounded-md font-bold hover:bg-red-700"
                       >
                         Delete
                       </button>
@@ -77,13 +83,17 @@ const Admin = () => {
                   </div>
                 ))
             ) : (
-              <p className="text-center text-gray-500">No admin accounts.</p>
+              <p className="text-center text-gray-700 font-semibold">
+                No admin accounts.
+              </p>
             )}
           </div>
 
+          <hr className="border-gray-400" />
+
           {/* 2️⃣ COMPANY SECTION */}
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
+            <h2 className="text-2xl font-bold text-black mb-4 text-center underline decoration-green-500">
               Companies
             </h2>
 
@@ -93,7 +103,7 @@ const Admin = () => {
                 .map((user) => (
                   <div
                     key={user._id}
-                    className="border border-gray-200 rounded-md p-4 flex justify-between items-center mb-3"
+                    className="border-2 border-gray-300 rounded-md p-4 flex justify-between items-center mb-3 bg-gray-50 hover:bg-gray-100"
                   >
                     <div className="flex items-center gap-4">
                       <img
@@ -101,25 +111,29 @@ const Admin = () => {
                           user.imageUrl ||
                           "https://randomuser.me/api/portraits/men/75.jpg"
                         }
-                        className="w-14 h-14 rounded-full border-2 border-green-500 object-cover"
+                        className="w-14 h-14 rounded-full border-4 border-green-600 object-cover"
                         alt="company"
                       />
                       <div>
-                        <p className="text-lg font-medium">{user.name}</p>
-                        <p className="text-sm text-gray-600">{user.role}</p>
+                        <p className="text-lg font-bold text-gray-900">
+                          {user.name}
+                        </p>
+                        <p className="text-md text-gray-800 font-semibold">
+                          {user.role}
+                        </p>
                       </div>
                     </div>
 
                     <div className="flex gap-2">
                       <button
                         onClick={() => nav(`/edit/${user._id}`)}
-                        className="bg-blue-600 text-white px-3 py-1 rounded-md"
+                        className="bg-blue-600 text-white px-3 py-1 rounded-md font-bold hover:bg-blue-700"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => deleteUser(user._id)}
-                        className="bg-red-600 text-white px-3 py-1 rounded-md"
+                        className="bg-red-600 text-white px-3 py-1 rounded-md font-bold hover:bg-red-700"
                       >
                         Delete
                       </button>
@@ -127,13 +141,17 @@ const Admin = () => {
                   </div>
                 ))
             ) : (
-              <p className="text-center text-gray-500">No companies found.</p>
+              <p className="text-center text-gray-700 font-semibold">
+                No companies found.
+              </p>
             )}
           </div>
 
+          <hr className="border-gray-400" />
+
           {/* 3️⃣ USERS SECTION */}
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
+            <h2 className="text-2xl font-bold text-black mb-4 text-center underline decoration-purple-500">
               Users
             </h2>
 
@@ -143,7 +161,7 @@ const Admin = () => {
                 .map((user) => (
                   <div
                     key={user._id}
-                    className="border border-gray-200 rounded-md p-4 flex justify-between items-center mb-3"
+                    className="border-2 border-gray-300 rounded-md p-4 flex justify-between items-center mb-3 bg-gray-50 hover:bg-gray-100"
                   >
                     <div className="flex items-center gap-4">
                       <img
@@ -151,25 +169,29 @@ const Admin = () => {
                           user.imageUrl ||
                           "https://randomuser.me/api/portraits/men/75.jpg"
                         }
-                        className="w-14 h-14 rounded-full border-2 border-purple-500 object-cover"
+                        className="w-14 h-14 rounded-full border-4 border-purple-600 object-cover"
                         alt="user"
                       />
                       <div>
-                        <p className="text-lg font-medium">{user.name}</p>
-                        <p className="text-sm text-gray-600">{user.role}</p>
+                        <p className="text-lg font-bold text-gray-900">
+                          {user.name}
+                        </p>
+                        <p className="text-md text-gray-800 font-semibold">
+                          {user.role}
+                        </p>
                       </div>
                     </div>
 
                     <div className="flex gap-2">
                       <button
                         onClick={() => nav(`/edit/${user._id}`)}
-                        className="bg-blue-600 text-white px-3 py-1 rounded-md"
+                        className="bg-blue-600 text-white px-3 py-1 rounded-md font-bold hover:bg-blue-700"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => deleteUser(user._id)}
-                        className="bg-red-600 text-white px-3 py-1 rounded-md"
+                        className="bg-red-600 text-white px-3 py-1 rounded-md font-bold hover:bg-red-700"
                       >
                         Delete
                       </button>
@@ -177,7 +199,7 @@ const Admin = () => {
                   </div>
                 ))
             ) : (
-              <p className="text-center text-gray-500">
+              <p className="text-center text-gray-700 font-semibold">
                 No regular users found.
               </p>
             )}
@@ -185,8 +207,8 @@ const Admin = () => {
         </div>
 
         {/* RIGHT SIDE – EQUAL SIZE PANEL */}
-        <div className="flex-1 bg-white shadow-md rounded-lg p-6 overflow-y-auto">
-          <h1 className="text-2xl font-semibold text-center text-gray-800 mb-4">
+        <div className="flex-1 bg-white shadow-xl rounded-lg p-6 overflow-y-auto border border-gray-300">
+          <h1 className="text-2xl font-bold text-center text-black mb-4 border-b-2 border-gray-200 pb-2">
             Business Directory
           </h1>
 
