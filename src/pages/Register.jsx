@@ -10,12 +10,11 @@ const Register = () => {
     password: "",
     role: "user",
     adminCode: "",
-    companyId: "",
     imageUrl: "",
+    // companyId நீக்கப்பட்டது
   });
 
-  const [registering, setRegistering] = useState(false); // ✅ New state
-
+  const [registering, setRegistering] = useState(false);
   const nav = useNavigate();
 
   const change = (e) => {
@@ -24,22 +23,16 @@ const Register = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    setRegistering(true); // ✅ Start registering
+    setRegistering(true);
     try {
       const res = await api.post("/api/register", form);
       console.log(res.data);
       alert("Registered successfully");
-
-      // save values in localStorage based on role
-      if (form.role === "company") {
-        localStorage.setItem("companyId", form.companyId);
-      }
-
       nav("/login");
     } catch (error) {
       alert(error.response?.data?.message || "Registration failed");
     } finally {
-      setRegistering(false); // ✅ Stop registering
+      setRegistering(false);
     }
   };
 
@@ -104,9 +97,9 @@ const Register = () => {
             className="w-full p-3 mb-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
           />
 
-          {/* ROLE SELECTION */}
-          <div className="flex justify-around mb-4">
-            <label className="flex items-center space-x-2">
+          {/* ROLE SELECTION - Removed Company Option */}
+          <div className="flex justify-center gap-6 mb-4">
+            <label className="flex items-center space-x-2 cursor-pointer">
               <input
                 type="radio"
                 name="role"
@@ -115,10 +108,10 @@ const Register = () => {
                 onChange={change}
                 className="accent-blue-600"
               />
-              <span>User</span>
+              <span className="text-gray-700 font-medium">User</span>
             </label>
 
-            <label className="flex items-center space-x-2">
+            <label className="flex items-center space-x-2 cursor-pointer">
               <input
                 type="radio"
                 name="role"
@@ -127,23 +120,11 @@ const Register = () => {
                 onChange={change}
                 className="accent-blue-600"
               />
-              <span>Admin</span>
-            </label>
-
-            <label className="flex items-center space-x-2">
-              <input
-                type="radio"
-                name="role"
-                value="company"
-                checked={form.role === "company"}
-                onChange={change}
-                className="accent-blue-600"
-              />
-              <span>Company</span>
+              <span className="text-gray-700 font-medium">Admin</span>
             </label>
           </div>
 
-          {/* ADMIN CODE */}
+          {/* ADMIN CODE INPUT */}
           {form.role === "admin" && (
             <input
               name="adminCode"
@@ -151,30 +132,20 @@ const Register = () => {
               value={form.adminCode}
               onChange={change}
               required
-              className="w-full p-3 mb-4 border- border-red-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+              className="w-full p-3 mb-4 border border-red-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 transition"
             />
           )}
 
-          {/* COMPANY ID */}
-          {form.role === "company" && (
-            <input
-              name="companyId"
-              placeholder="Enter Company ID"
-              value={form.companyId}
-              onChange={change}
-              required
-              className="w-full p-3 mb-4 border-2 border-green-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400 transition"
-            />
-          )}
+          {/* Company ID Input Removed */}
 
           <button
             type="submit"
-            disabled={registering} // ✅ disable button while registering
+            disabled={registering}
             className={`w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition ${
               registering ? "opacity-70 cursor-not-allowed" : ""
             }`}
           >
-            {registering ? "Registering..." : "Register"} {/* ✅ show state */}
+            {registering ? "Registering..." : "Register"}
           </button>
 
           <p className="text-center mt-4 text-gray-500">

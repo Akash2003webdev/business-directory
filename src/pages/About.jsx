@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import flowImage from "../assets/flowchart.png"; // Ensure this image exists in your assets
+import DemoGuide from "../components/DemoGuide";
 
 const About = () => {
   return (
@@ -48,6 +49,7 @@ const About = () => {
               between users and inventory databases.
             </p>
           </div>
+          <DemoGuide />
 
           {/* --- SECTION 1: PROJECT OVERVIEW (Technical Focus) --- */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-24">

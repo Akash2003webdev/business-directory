@@ -2,12 +2,17 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import ShopList from "./ShopList";
+import DemoGuide from "../components/DemoGuide"; // DemoGuide-ஐ மறக்காமல் Import செய்யவும்
 
 const Home = () => {
   const nav = useNavigate();
 
   const goLogin = () => {
     nav("/login");
+  };
+
+  const goRegister = () => {
+    nav("/register");
   };
 
   return (
@@ -36,6 +41,8 @@ const Home = () => {
               </span>
             </h1>
 
+            {/* Removed the messy <p> tags from here */}
+            
             <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-300 mb-10">
               Access a premium directory of business shops and book inventories.
               Manage, search, and explore efficiently.
@@ -94,31 +101,67 @@ const Home = () => {
               </div>
             </div>
 
-            {/* List & Login Prompt Area */}
+            {/* List & Access Area */}
             <div className="p-6 bg-gray-50/50 min-h-[500px] flex flex-col">
               {/* The Directory List */}
               <ShopList />
 
-              {/* --- NEW: LOGIN PROMPT AT BOTTOM --- */}
-              <div className="mt-8 pt-8 border-t border-gray-200">
-                <div className="bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-100 rounded-2xl p-8 text-center shadow-sm">
-                  <div className="mb-3 text-3xl">🔒</div>
-                  <h3 className="text-lg font-bold text-slate-800 mb-2">
-                    Want to see more details?
-                  </h3>
-                  <p className="text-slate-500 mb-6 max-w-md mx-auto">
-                    Login now to view exclusive pricing, contact information,
-                    and full inventory details.
-                  </p>
-                  <button
-                    onClick={goLogin}
-                    className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 transition-all shadow-md hover:shadow-lg"
-                  >
-                    Login to Unlock Access →
-                  </button>
+              {/* --- SPLIT ACCESS SECTION --- */}
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <h3 className="text-center text-xl font-bold text-gray-700 mb-8">
+                  Choose Your Access Type
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
+                  
+                  {/* Option 1: Normal Users (Register/Login) */}
+                  <div className="bg-white border border-indigo-100 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div className="mb-4 text-4xl">👤</div>
+                    <h4 className="text-lg font-bold text-slate-800 mb-2">
+                      New User / Customer
+                    </h4>
+                    <p className="text-slate-500 mb-6 text-sm">
+                      Want to buy books? Register now to get exclusive pricing and full access.
+                    </p>
+                    <div className="flex gap-3 justify-center">
+                      <button
+                        onClick={goRegister}
+                        className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+                      >
+                        Register
+                      </button>
+                      <button
+                        onClick={goLogin}
+                        className="px-6 py-2 border border-indigo-200 text-indigo-600 rounded-lg font-medium hover:bg-indigo-50 transition-colors"
+                      >
+                        Login
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Option 2: Company & Admin (Login Only) */}
+                  <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div className="mb-4 text-4xl">🏢</div>
+                    <h4 className="text-lg font-bold text-white mb-2">
+                      Company & Admin
+                    </h4>
+                    <p className="text-slate-400 mb-6 text-sm">
+                      Existing partners and administrators access your dashboard here.
+                    </p>
+                    <button
+                      onClick={goLogin}
+                      className="w-full max-w-[180px] px-6 py-2 bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-600 transition-colors shadow-lg shadow-emerald-500/20"
+                    >
+                      Secure Login
+                    </button>
+                  </div>
                 </div>
+
+                {/* --- ADDED DEMO GUIDE HERE --- */}
+                {/* இது அந்த டெக்ஸ்ட் விவரங்களை அழகாகக் காட்டும் */}
+                <DemoGuide />
+                
               </div>
-              {/* ----------------------------------- */}
             </div>
           </div>
         </div>
@@ -131,8 +174,8 @@ const Home = () => {
               Powerful features to manage your business reading.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* ... Feature grid code remains same ... */}
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="group bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:border-blue-100 transition-all duration-300">
               <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
                 🔍
